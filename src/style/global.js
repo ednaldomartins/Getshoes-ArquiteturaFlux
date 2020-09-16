@@ -1,6 +1,6 @@
 import {createGlobalStyle} from 'styled-components'
 
-import headerbackground from '../assets/image/header-background.svg'
+import background from '../assets/image/background.svg'
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Kufam&display=swap');
@@ -13,7 +13,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #041204 url(${headerbackground}) no-repeat center top;
+    background: #041204 url(${background}) no-repeat center top;
     -webkit-font-smoothing: antialiased;
   }
 
