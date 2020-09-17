@@ -8,7 +8,7 @@ export default function Router () {
   return (
     <Switch>
       <Route path="/" exact component={Home}/>
-      <Route path="/cart" componetn={Cart}/>
+      <Route path="/cart" component={Cart}/>
     </Switch>
   )
 }
