@@ -6,6 +6,7 @@ import {
 } from 'react-icons/md'
 import {connect} from 'react-redux'
 
+import * as CartAction from '../../store/module/cart/action'
 import {Container, ProductTable, Total} from './style'
 
 function Cart({cart, dispatch}) {
@@ -51,9 +52,7 @@ function Cart({cart, dispatch}) {
               <td>
                 <button
                   type="button"
-                  onClick={() => dispatch({
-                    type:'REMOVE_FROM_CART',
-                    id: product.id})}>
+                  onClick={() => dispatch(CartAction.removeFromCart(product.id))}>
                       <MdDelete size={28} color="#20bb10"/>
                 </button>
               </td>
