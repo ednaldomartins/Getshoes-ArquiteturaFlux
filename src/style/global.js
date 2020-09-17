@@ -18,7 +18,7 @@ export default createGlobalStyle`
   }
 
   body, input, button {
-    font: 14px Kufan, sans-serif;
+    font: 14px Kufam, sans-serif;
   }
 
   #root {
