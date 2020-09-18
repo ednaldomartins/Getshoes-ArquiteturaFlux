@@ -18,6 +18,11 @@ export default createGlobalStyle`
     -webkit-font-smoothing: antialiased;
   }
 
+  /** escoder botao de de aumentar/diminuir do spin no firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
   body, input, button {
     font: 14px Kufam, sans-serif;
   }
