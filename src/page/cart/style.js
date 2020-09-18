@@ -63,10 +63,10 @@ export const ProductTable= styled.table`
       border-radius: 4px;
       color: #777;
       padding: 8px 4px;
-      width: 40px;
+      width: 28px;
+      height: 14px;
     }
   }
-
 
   button {
     background: none;
