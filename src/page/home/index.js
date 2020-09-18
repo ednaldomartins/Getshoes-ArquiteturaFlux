@@ -24,9 +24,9 @@ class Home extends Component {
     })
   }
 
-  handleAddProduct = product => {
+  handleAddProduct = id => {
     const {dispatch} = this.props
-    dispatch(CartActions.addToCart(product))
+    dispatch(CartActions.addToCartRequest(id))
   }
 
   render () {
@@ -42,7 +42,7 @@ class Home extends Component {
               <p>{product.title}</p>
               <span>{product.priceFormatted}</span>
 
-              <button type="button" onClick={() => this.handleAddProduct(product)}>
+              <button type="button" onClick={() => this.handleAddProduct(product.id)}>
                 <div>
                   <MdAddShoppingCart size={16} color="#fff"/>
                   {amount[product.id] || 0}
