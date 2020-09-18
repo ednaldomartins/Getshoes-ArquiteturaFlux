@@ -37,8 +37,23 @@ function* addToCart( {id} ) {
   }
 }
 
+function* updateAmount({id, amount}) {
+  if(amount <= 0) return
+
+  const stock = yield call(api.get, `stock/${id}`)
+  const stockAmount = stock.data.amount
+
+  if(amount > stockAmount) {
+    toast.error('Quantidade de itens solicitada acima do disponível no estoque.')
+    return
+  }
+
+  yield put(updateAmountSuccess(id, amount))
+}
+
 /** disparar notificacao */
 export default all([
   /** acoes do redux que está ouvindo, qual ação disparar */
   takeLatest('@cart/ADD_REQUEST', addToCart),
+  takeLatest('@cart/UPDATE_AMOUNT_REQUEST', updateAmount)
 ])

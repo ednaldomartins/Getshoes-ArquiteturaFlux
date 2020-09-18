@@ -13,14 +13,14 @@ import {formatPrice} from '../../util/format'
 function Cart({cart, total, dispatch}) {
 
   function increment(product) {
-    dispatch(CartAction.updateAmount(
+    dispatch(CartAction.updateAmountRequest(
       product.id,
       product.amount+1
     ))
   }
 
   function decrement(product) {
-    dispatch(CartAction.updateAmount(
+    dispatch(CartAction.updateAmountRequest(
       product.id,
       product.amount-1
     ))
