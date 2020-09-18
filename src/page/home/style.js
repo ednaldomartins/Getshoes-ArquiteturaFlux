@@ -50,12 +50,12 @@ export const ProductList = styled.ul`
       div {
         display: flex;
         align-items: center;
-        padding: 8px;
+        padding: 8px 4px;
         background: rgba(0,0,0,0.15);
       }
 
       svg {
-        margin-right: 16px;
+        margin-right: 4px;
       }
 
       span {

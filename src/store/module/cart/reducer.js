@@ -25,6 +25,19 @@ export default function cart(state = [], action) {
           draft.splice(productIndex, 1)
         }
       })
+    case '@cart/UPDATE_AMOUNT': {
+      if(action.amount <= 0) {
+        return state
+      }
+      
+      return producer(state, draft => {
+        const producerIndex = draft.findIndex(p => p.id === action.id)
+
+        if (producerIndex >= 0) {
+          draft[producerIndex].amount = Number(action.amount)
+        }
+      })
+    }
     default:
       return state;
   }

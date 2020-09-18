@@ -31,6 +31,7 @@ class Home extends Component {
 
   render () {
     const {products} = this.state
+    const {amount} = this.props
 
     return(
       <ProductList>
@@ -44,6 +45,7 @@ class Home extends Component {
               <button type="button" onClick={() => this.handleAddProduct(product)}>
                 <div>
                   <MdAddShoppingCart size={16} color="#fff"/>
+                  {amount[product.id] || 0}
                 </div>
                 <span>ADICIONAR AO CARRINHO</span>
               </button>
@@ -56,5 +58,12 @@ class Home extends Component {
 
 }
 
+const mapStateToProps = state => ({
+  amount: state.cart.reduce((amount, product) => {
+    amount[product.id] = product.amount
+    return amount
+  }, {})
+})
+
 /** connect chama uma funcao e posteriormente retorna o Home */
-export default connect()(Home);
+export default connect(mapStateToProps)(Home);

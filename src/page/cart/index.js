@@ -8,8 +8,24 @@ import {connect} from 'react-redux'
 
 import * as CartAction from '../../store/module/cart/action'
 import {Container, ProductTable, Total} from './style'
+import {formatPrice} from '../../util/format'
 
-function Cart({cart, dispatch}) {
+function Cart({cart, total, dispatch}) {
+
+  function increment(product) {
+    dispatch(CartAction.updateAmount(
+      product.id,
+      product.amount+1
+    ))
+  }
+
+  function decrement(product) {
+    dispatch(CartAction.updateAmount(
+      product.id,
+      product.amount-1
+    ))
+  }
+
   return (
     <Container>
       <ProductTable>
@@ -36,18 +52,18 @@ function Cart({cart, dispatch}) {
               </td>
               <td>
                 <div>
-                  <button type="button">
+                  <button type="button" onClick={() => decrement(product)}>
                     <MdRemoveCircleOutline size={28} color="#20bb10"/>
                   </button>
                   <input type="number" readOnly value={product.amount}/>
-                  <button type="button">
+                  <button type="button" onClick={() => increment(product)}>
                     <MdAddCircleOutline size={28} color="#20bb10"/>
                   </button>
                 </div>
               </td>
 
               <td>
-                <strong>R$897,70</strong>
+                <strong>{product.subtotal}</strong>
               </td>
               <td>
                 <button
@@ -68,7 +84,7 @@ function Cart({cart, dispatch}) {
 
         <Total>
           <span>TOTAL</span>
-          <strong>R$897,70</strong>
+          <strong>{total}</strong>
         </Total>
       </footer>
     </Container>
@@ -76,7 +92,13 @@ function Cart({cart, dispatch}) {
 }
 
 const mapStateToProps = state => ({
-  cart: state.cart,
+  cart: state.cart.map(product => ({
+    ...product,
+    subtotal: formatPrice(product.price * product.amount),
+  })),
+  total: formatPrice( state.cart.reduce((total, product) => {
+    return total + product.price * product.amount
+  }, 0)) /** o valor do total inicia com 0 */
 })
 
 export default connect(mapStateToProps)(Cart)
